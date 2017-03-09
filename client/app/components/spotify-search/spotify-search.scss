@@ -1,0 +1,41 @@
+spotify-search {
+    >div {
+        padding: 3rem;
+        md-input-container {
+            .md-input {
+                font-size: 30px;
+                line-height: 30px;
+                height: 100%;
+                padding: 15px;
+                background-color: #fff;
+            }
+            md-progress-circular {
+                position: absolute;
+                right: 20px;
+                top: 44px;
+            }
+        }
+        md-input-container.md-input-focused .md-input,
+        md-input-container .md-input.ng-invalid.ng-dirty,
+        md-input-container.md-input-resized .md-input {
+            padding: 15px;
+            border: none;
+        }
+        md-list-item {
+            img {
+                width: 64px;
+                height: 64px;
+            }
+            >md-icon.material-icons,
+            >md-icon.material-icons:first-child {
+                font-size: 64px;
+                width: auto;
+                height: auto;
+                background-color: #DDD;
+            }
+            >md-icon.rounded {
+                border-radius: 50%;
+            }
+        }
+    }
+}

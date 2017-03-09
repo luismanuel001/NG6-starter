@@ -1,7 +1,6 @@
+@import "~angular-material/angular-material.scss";
 @import "common/common";
-
 .app {
-  height: 100%;
-  background-color: $lightBgColor;
+    height: 100vh;
+    background-color: $lightBgColor;
 }
-
