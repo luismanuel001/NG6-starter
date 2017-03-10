@@ -7,16 +7,18 @@ class SpotifySearchService {
         this.spotifyApiUrl = spotifyApiUrl;
     }
 
-    query(q, limit, offset) {
-        limit = limit || 10;
-        offset = offset || 0;
+    query(q, options) {
         let params = {
             q: q,
-            type: 'artist,album',
-            limit: limit,
-            offset: offset
+            type: options.type || 'artist,album',
+            limit: options.limit || 10,
+            offset: options.offset || 0
         };
         return this.rx.Observable.fromPromise(this.$http.get(`${this.spotifyApiUrl}/search`, { params: params }));
+    }
+
+    getAlbums(id) {
+        return this.rx.Observable.fromPromise(this.$http.get(`${this.spotifyApiUrl}/artists/${id}/albums`, { params: params }));
     }
 }
 

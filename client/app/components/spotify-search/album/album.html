@@ -1,0 +1,12 @@
+<md-list-item class="md-2-line">
+    <md-icon>
+        {{!$ctrl.item.images[$ctrl.item.images.length - 1].url? ($ctrl.item.type === 'artist'?'mic':'album'): ''}}
+        <img ng-src="{{$ctrl.item.images[$ctrl.item.images.length - 1].url}}" alt="{{$ctrl.item.name}}" ng-if="$ctrl.item.images[$ctrl.item.images.length - 1].url">
+    </md-icon>
+    <div class="md-list-item-text">
+        <h3>{{$ctrl.item.name}}</h3>
+        <h4>
+            {{$ctrl.item.type}}
+        </h4>
+    </div>
+</md-list-item>

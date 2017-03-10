@@ -3,23 +3,56 @@
         <input name="searchText" type="text" ng-model="$ctrl.searchText" placeholder="Type Album or Artist" md-whiteframe="3" ng-change="$ctrl.search($ctrl.searchText)" flex>
         <md-progress-circular md-mode="indeterminate" md-diameter="30px" flex ng-if="$ctrl.isLoading"></md-progress-circular>
     </md-input-container>
-    <md-content ng-show="$ctrl.searchResults.top.length" flex>
-        <md-tabs layout-fill>
-            <md-tab ng-repeat="(name, resultSet) in $ctrl.searchResults">
-                <md-tab-label>{{name | uppercase}}</md-tab-label>
+    <md-content ng-show="$ctrl.searchResults.artists.length || $ctrl.searchResults.albums.length" flex>
+        <md-tabs md-selected="$ctrl.selectedTab" layout-fill>
+            <md-tab>
+                <md-tab-label>TOP</md-tab-label>
+                <md-tab-body>
+                    <md-subheader>Artists</md-subheader>
+                    <md-list>
+                        <artist ng-repeat="item in $ctrl.searchResults.artists.slice(0,5)" item="item"></artist>
+                        <md-list-item class="md-2-line" ng-click="$ctrl.goToTab(1)">
+                            <div class="md-list-item-text" layout="column" layout-align="center center">
+                                <h3>More artists...</h3>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                    <md-divider></md-divider>
+                    <md-subheader>Albums</md-subheader>
+                    <md-list>
+                        <album ng-repeat="item in $ctrl.searchResults.albums.slice(0,5)" item="item"></album>
+                        <md-list-item class="md-2-line" ng-click="$ctrl.goToTab(2)">
+                            <div class="md-list-item-text" layout="column" layout-align="center center">
+                                <h3>More albums...</h3>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-tab-body>
+            </md-tab>
+            <md-tab>
+                <md-tab-label>ARTISTS</md-tab-label>
                 <md-tab-body>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="item in resultSet">
-                            <md-icon>
-                                {{!item.images[item.images.length - 1].url? (item.type === 'artist'?'mic':'album'): ''}}
-                                <img ng-src="{{item.images[item.images.length - 1].url}}" alt="{{item.name}}" ng-if="item.images[item.images.length - 1].url">
-                            </md-icon>
-                            <div class="md-list-item-text">
-                                <h3>{{item.name}}</h3>
-                                <h4>{{item.type}}</h4>
-                                <p>{{item.notes}}</p>
+                        <artist ng-repeat="item in $ctrl.searchResults.artists" item="item"></artist>
+                        <md-list-item class="md-2-line" ng-click="$ctrl.getMore('artist')">
+                            <div class="md-list-item-text" layout="column" layout-align="center center">
+                                <h3 ng-if="!$ctrl.isLoading">More...</h3>
+                                <md-progress-circular md-mode="indeterminate" md-diameter="30px" flex ng-if="$ctrl.isLoading"></md-progress-circular>
                             </div>
-                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-tab-body>
+            </md-tab>
+            <md-tab>
+                <md-tab-label>ALBUMS</md-tab-label>
+                <md-tab-body>
+                    <md-list>
+                        <album ng-repeat="item in $ctrl.searchResults.albums" item="item"></album>
+                        <md-list-item class="md-2-line" ng-click="$ctrl.getMore('album')">
+                            <div class="md-list-item-text" layout="column" layout-align="center center">
+                                <h3 ng-if="!$ctrl.isLoading">More...</h3>
+                                <md-progress-circular md-mode="indeterminate" md-diameter="30px" flex ng-if="$ctrl.isLoading"></md-progress-circular>
+                            </div>
                         </md-list-item>
                     </md-list>
                 </md-tab-body>
