@@ -1,3 +1,8 @@
+/**
+ * Controller for the SpotifySearchComponent
+ *
+ * @class SpotifySearchController
+ */
 class SpotifySearchController {
     constructor($timeout, rx, SpotifySearch) {
         'ngInject';
@@ -19,7 +24,18 @@ class SpotifySearchController {
         this.typeaheadObservable.dispose();
     }
 
+    /**
+     * Initialize typeahead Observable
+     *
+     *
+     * @memberOf SpotifySearchController
+     */
     initTypeaheadObservable() {
+        /**
+         * Notice the use of Observables for a more efficient implementation of the typeahead input,
+         * it features debouncing for delayed keystrokes, min length validation, distinct queries
+         * and cancelable http requests
+         */
         this.typeaheadObservable = this.rx.createObservableFunction(this, 'search')
             .debounce(400)
             .map(q => q.trim())
@@ -41,16 +57,30 @@ class SpotifySearchController {
             }, err => this.isLoading = false);
     }
 
+    /**
+     * Method to go to the specified tab
+     *
+     * @param {number} index
+     *
+     * @memberOf SpotifySearchController
+     */
     goToTab(index) {
         this.selectedTab = index;
     }
 
+    /**
+     * Get More search results used for pagination
+     *
+     * @param {string} type - Search query type, can be 'artist' or 'album'
+     *
+     * @memberOf SpotifySearchController
+     */
     getMore(type) {
         this.isLoading = true;
         let offset;
         if (type === 'artist') offset = this.searchResults.artists.length;
         else offset = this.searchResults.albums.length;
-        return this.SpotifySearch.query(this.searchText, { limit: this.resultSize, offset: offset, type: type })
+        this.SpotifySearch.query(this.searchText, { limit: this.resultSize, offset: offset, type: type })
             .subscribe(results => {
                 this.$timeout(() => {
                     this.isLoading = false;

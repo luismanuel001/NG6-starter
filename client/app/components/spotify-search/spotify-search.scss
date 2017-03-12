@@ -26,16 +26,16 @@ spotify-search {
                 width: 64px;
                 height: 64px;
             }
-            >md-icon.material-icons,
-            >md-icon.material-icons:first-child {
+            >md-icon.material-icons:first-child,
+            .md-list-item-inner>md-icon.material-icons:first-child {
                 font-size: 64px;
                 width: auto;
                 height: auto;
                 background-color: #DDD;
             }
-            >md-icon.rounded {
-                border-radius: 50%;
-            }
+        }
+        .md-subheader .md-subheader-inner {
+            padding-bottom: 0;
         }
     }
 }

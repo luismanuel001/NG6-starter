@@ -1,6 +1,6 @@
-<md-list-item class="md-2-line">
+<md-list-item class="md-2-line" ng-href="{{$ctrl.item.external_urls.spotify}}" target="_blank">
     <md-icon>
-        {{!$ctrl.item.images[$ctrl.item.images.length - 1].url? ($ctrl.item.type === 'artist'?'mic':'album'): ''}}
+        {{!$ctrl.item.images[$ctrl.item.images.length - 1].url? 'album': ''}}
         <img ng-src="{{$ctrl.item.images[$ctrl.item.images.length - 1].url}}" alt="{{$ctrl.item.name}}" ng-if="$ctrl.item.images[$ctrl.item.images.length - 1].url">
     </md-icon>
     <div class="md-list-item-text">

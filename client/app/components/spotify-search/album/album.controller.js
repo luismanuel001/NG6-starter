@@ -1,9 +1,14 @@
+/**
+ * Controller for the Album Component
+ *
+ * @class AlbumController
+ */
 class AlbumController {
-  constructor() {
-    'ngInject';
+    constructor() {
+        'ngInject';
 
-    this.name = 'album';
-  }
+        this.name = 'album';
+    }
 }
 
 export default AlbumController;

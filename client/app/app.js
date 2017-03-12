@@ -6,13 +6,15 @@ import AppComponent from './app.component';
 import 'normalize.css';
 import ngMaterial from 'angular-material';
 import rx from 'rx-angular';
+import LocalStorageModule from 'angular-local-storage';
 
 angular.module('app', [
         uiRouter,
         Common,
         Components,
         ngMaterial,
-        'rx'
+        'rx',
+        LocalStorageModule
     ])
     .config(($locationProvider) => {
         'ngInject';
