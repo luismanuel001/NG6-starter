@@ -125,6 +125,9 @@ Here's a list of available tasks:
 * `npm run component`
   * scaffolds a new Angular component. [Read below](#generating-components) for usage details.
   
+### UI Testing (e2e)
+To run the e2e tests, run `npm test:e2e`.
+
 ### Testing
 To run the tests, run `npm test`.
 
