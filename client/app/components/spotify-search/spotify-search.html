@@ -3,7 +3,7 @@
         <input name="searchText" type="text" ng-model="$ctrl.searchText" placeholder="Type Album or Artist" md-whiteframe="3" ng-change="$ctrl.search($ctrl.searchText)" flex>
         <md-progress-circular md-mode="indeterminate" md-diameter="30px" flex ng-if="$ctrl.isLoading"></md-progress-circular>
     </md-input-container>
-    <md-content ng-show="$ctrl.searchResults.artists.length || $ctrl.searchResults.albums.length" flex>
+    <md-content class="search-results-container" ng-if="$ctrl.searchResults.artists.length || $ctrl.searchResults.albums.length" flex>
         <md-tabs md-selected="$ctrl.selectedTab" layout-fill>
             <md-tab>
                 <md-tab-label>TOP</md-tab-label>
@@ -11,7 +11,7 @@
                     <md-subheader>Artists</md-subheader>
                     <md-list>
                         <artist ng-repeat="item in $ctrl.searchResults.artists.slice(0,5)" item="item"></artist>
-                        <md-list-item class="md-2-line" ng-click="$ctrl.goToTab(1)">
+                        <md-list-item class="more-artists md-2-line" ng-click="$ctrl.goToTab(1)">
                             <div class="md-list-item-text" layout="column" layout-align="center center">
                                 <h3>More artists...</h3>
                             </div>
@@ -21,7 +21,7 @@
                     <md-subheader>Albums</md-subheader>
                     <md-list>
                         <album ng-repeat="item in $ctrl.searchResults.albums.slice(0,5)" item="item"></album>
-                        <md-list-item class="md-2-line" ng-click="$ctrl.goToTab(2)">
+                        <md-list-item class="more-albums md-2-line" ng-click="$ctrl.goToTab(2)">
                             <div class="md-list-item-text" layout="column" layout-align="center center">
                                 <h3>More albums...</h3>
                             </div>

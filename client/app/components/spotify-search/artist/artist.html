@@ -1,4 +1,4 @@
-<md-list-item class="md-2-line" ng-click="$ctrl.toggleAlbums()">
+<md-list-item class="artist-list-item md-2-line" ng-click="$ctrl.toggleAlbums()">
     <md-icon>
         {{!$ctrl.item.images[$ctrl.item.images.length - 1].url? 'mic': ''}}
         <img ng-src="{{$ctrl.item.images[$ctrl.item.images.length - 1].url}}" alt="{{$ctrl.item.name}}" ng-if="$ctrl.item.images[$ctrl.item.images.length - 1].url">
